@@ -162,7 +162,7 @@ class Combat(gym.Env):
         # select agent team center
         # Note : Leaving space from edges so as to have a 5x5 grid around it
         agent_team_corner = random.randint(0, int(self._grid_shape[0] / 2)), random.randint(0, int(self._grid_shape[1] / 2))
-        agent_pos_index = np.random.choice(25, self.n_agents, replace=False)
+        agent_pos_index = random.choice(range(25), self.n_agents)
         # randomly select agent pos
         for agent_i in range(self.n_agents):
             pos = [agent_pos_index[agent_i] / 5 + agent_team_corner[0], agent_pos_index[agent_i] % 5 + agent_team_corner[1]]
@@ -182,7 +182,7 @@ class Combat(gym.Env):
                 opp_team_corner = pos
                 break
                 
-        opp_pos_index = np.random.choice(25, self._n_opponents, replace=False)
+        opp_pos_index = random.choice(range(25), self._n_opponents)
 
         # randomly select opponent pos
         for opp_i in range(self._n_opponents):
