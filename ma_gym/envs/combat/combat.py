@@ -126,6 +126,7 @@ class Combat(gym.Env):
                         _id = int(x[1:]) - 1  # id
                         _agent_i_obs[0][row][col] = _type
                         _agent_i_obs[1][row][col] = _id
+                        print('type', type, '_type', _type)
                         _agent_i_obs[2][row][col] = self.agent_health[_id] if type == 1 else self.opp_health[_id]
                         _agent_i_obs[3][row][col] = self._agent_cool[_id] if type == 1 else self._opp_cool[_id]
                         _agent_i_obs[3][row][col] = 1 if _agent_i_obs[3][row][col] else -1  # cool/uncool
