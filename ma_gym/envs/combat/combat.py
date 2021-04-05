@@ -165,7 +165,7 @@ class Combat(gym.Env):
         agent_pos_index = random.sample(range(25), self.n_agents)
         # randomly select agent pos
         for agent_i in range(self.n_agents):
-            pos = [agent_pos_index[agent_i] / 5 + agent_team_corner[0], agent_pos_index[agent_i] % 5 + agent_team_corner[1]]
+            pos = [int(agent_pos_index[agent_i]) / 5 + agent_team_corner[0], agent_pos_index[agent_i] % 5 + agent_team_corner[1]]
             while True:
                 if self._full_obs[pos[0]][pos[1]] == PRE_IDS['empty']:
                     self.agent_prev_pos[agent_i] = pos
@@ -186,7 +186,7 @@ class Combat(gym.Env):
 
         # randomly select opponent pos
         for opp_i in range(self._n_opponents):
-            pos = [opp_pos_index[agent_i] / 5 + opp_team_corner[0], opp_pos_index[agent_i] % 5 + opp_team_corner[1]]
+            pos = [int(opp_pos_index[agent_i]) / 5 + opp_team_corner[0], opp_pos_index[agent_i] % 5 + opp_team_corner[1]]
             while True:
                 if self._full_obs[pos[0]][pos[1]] == PRE_IDS['empty']:
                     self.opp_prev_pos[opp_i] = pos
