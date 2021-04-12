@@ -468,7 +468,7 @@ ACTION_MEANING = {
 
 PRE_IDS = {
     'wall': 'W',
-    'empty': '0',
+    'empty': 'E',
     'agent': 'A',
     'opponent': 'X',
 }
