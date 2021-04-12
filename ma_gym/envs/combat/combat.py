@@ -429,17 +429,19 @@ class Combat(gym.Env):
             if self.opp_health[opp_i] > 0:
                 if action <= 4:
                     self.__update_opp_pos(opp_i, action)
-
+        win = False
         # step overflow or all opponents dead
         if (self._step_count >= self._max_steps) \
                 or (sum([v for k, v in self.opp_health.items()]) == 0) \
                 or (sum([v for k, v in self.agent_health.items()]) == 0):
             self._agent_dones = [True for _ in range(self.n_agents)]
+            if (sum([v for k, v in self.opp_health.items()]) == 0):
+                win = True
 
         for i in range(self.n_agents):
             self._total_episode_reward[i] += rewards[i]
 
-        return self.get_agent_obs(), rewards, self._agent_dones, {'health': self.agent_health}
+        return self.get_agent_obs(), rewards, self._agent_dones, {'health': self.agent_health, 'win': win}
 
     def seed(self, n):
         self.np_random, seed1 = seeding.np_random(n)
