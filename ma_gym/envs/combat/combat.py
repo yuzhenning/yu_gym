@@ -305,7 +305,7 @@ class Combat(gym.Env):
     @staticmethod
     def is_fireable(source_pos, target_pos):
         """
-        Checks if the target_pos is in the firing range(5x5)
+        Checks if the target_pos is in the firing range(3x3)
 
         :param source_pos: Coordinates of the source
         :param target_pos: Coordinates of the target
