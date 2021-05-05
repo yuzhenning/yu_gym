@@ -27,7 +27,7 @@ class Combat(gym.Env):
     the firing range of A (its surrounding 3 × 3 area). Agents need one time step of cooling down after
     an attack, during which they cannot attack. All agents start with 3 health points, and die when their
     health reaches 0. A team will win if all agents in the other team die. The simulation ends when one
-    team wins, or neither of teams win within 40 time steps (a draw).
+    team wins, or neither of teams win within 100 time steps (a draw).
 
     The model controls one team during training, and the other team consist of bots that follow a hardcoded policy.
     The bot policy is to attack the nearest enemy agent if it is within its firing range. If not,
@@ -36,9 +36,8 @@ class Combat(gym.Env):
 
     When input to a model, each agent is represented by a set of one-hot binary vectors {i, t, l, h, c}
     encoding its unique ID, team ID, location, health points and cooldown. A model controlling an agent
-    also sees other agents in its visual range (3 × 3 surrounding area). The model gets reward of -1 if the
-    team loses or draws at the end of the game. In addition, it also get reward of −0.1 times the total
-    health points of the enemy team, which encourages it to attack enemy bots.
+    also sees other agents in its visual range (3 × 3 surrounding area). The rewards are given agent-wise:
+    +1 if the agent hits an opponent, -1 if the agent is hit by an opponent.
 
     Reference : Learning Multiagent Communication with Backpropagation
     Url : https://papers.nips.cc/paper/6398-learning-multiagent-communication-with-backpropagation.pdf
